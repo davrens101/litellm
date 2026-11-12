@@ -119,7 +119,7 @@ jobs:
         run: sudo ip netns delete smoke
 
       - name: Keep only source-built wheels in the uv cache
-        if: always() && github.ref == 'refs/heads/main'
+        if: always()
         run: uv cache prune --ci
 
   all-extras:
@@ -173,7 +173,7 @@ jobs:
         run: .venv/bin/python -c "import litellm, litellm.proxy.proxy_server, litellm_enterprise"
 
       - name: Keep only source-built wheels in the uv cache
-        if: always() && github.ref == 'refs/heads/main'
+        if: always()
         run: uv cache prune --ci
 
   windows-sdk:
@@ -208,7 +208,7 @@ jobs:
         run: uv run --no-sync python -m pytest --tb=short -v tests/windows_tests
 
       - name: Keep only source-built wheels in the uv cache
-        if: always() && github.ref == 'refs/heads/main'
+        if: always()
         run: uv cache prune --ci
 
   proxy-build-from-pip:
@@ -347,7 +347,7 @@ jobs:
         run: cat /tmp/litellm-pip.log || true
 
       - name: Keep only source-built wheels in the uv cache
-        if: always() && github.ref == 'refs/heads/main'
+        if: always()
         run: uv cache prune --ci
 
   smoke-passed:
